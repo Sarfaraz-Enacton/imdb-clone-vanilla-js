@@ -1,6 +1,6 @@
 /** @type {import('tailwindcss').Config} */
 export default {
-  content: ["./index.html"],
+  content: ["./index.html", "./src/**/*.{js,ts,jsx,tsx}"],
   theme: {
     extend: {
       fontFamily: {
@@ -18,6 +18,8 @@ export default {
         secondary: {
           DEFAULT: "#000000",
           300: "#1f1f1f",
+          200: "#1a1a1a",
+          blue: "#30353c",
         },
         yellow: "#f5c518",
         blue: "#5799ef",

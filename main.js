@@ -1,6 +1,7 @@
 import "./style.css";
 import "./src/js/swiper";
-import "./src/js/api";
+import "./src/js/utils/api";
+
 // import javascriptLogo from './javascript.svg'
 // import viteLogo from '/vite.svg'
 // import { setupCounter } from './counter.js'
@@ -24,15 +25,19 @@ import "./src/js/api";
 // `
 
 // setupCounter(document.querySelector('#counter'))
-
 const navMenuPcBtn = document.querySelector("#menu-btn-pc");
 const menuPc = document.querySelector("#MenuPc");
 const navMenuCloseBtn = document.querySelector("#menu-close-btn-pc");
-navMenuPcBtn.addEventListener("click", () => {
-  menuPc.classList.remove("-translate-y-full");
-  menuPc.classList.add("translate-y-0");
-});
-navMenuCloseBtn.addEventListener("click", () => {
-  menuPc.classList.remove("translate-y-0");
-  menuPc.classList.add("-translate-y-full");
-});
+if (menuPc && navMenuPcBtn && navMenuCloseBtn) {
+  document.addEventListener("DOMContentLoaded", () => {
+    navMenuPcBtn.addEventListener("click", () => {
+      menuPc.classList.remove("hidden");
+      menuPc.classList.remove("-translate-y-full");
+      menuPc.classList.add("translate-y-0");
+    });
+    navMenuCloseBtn.addEventListener("click", () => {
+      menuPc.classList.remove("translate-y-0");
+      menuPc.classList.add("-translate-y-full");
+    });
+  });
+}

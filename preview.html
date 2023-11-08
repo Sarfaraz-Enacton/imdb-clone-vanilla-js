@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <div id="movie-details">
+      <!-- Movie details will be displayed here -->
+    </div>
+    <h1>hello world</h1>
+    <script>
+      function getQueryParams(url) {
+        const urlParams = new URLSearchParams(window.location.search);
+        return urlParams.get(url);
+      }
+
+      const dataId = getQueryParams("dataId");
+      const config = {
+        bearer_token:
+          "eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiI3NjdiOTY4MzA4ZDg0MTQ0OTdiNTU3MjBhMWM3M2JlZiIsInN1YiI6IjY1M2ZhN2QxYmMyY2IzMDE0ZDRiZGU2MSIsInNjb3BlcyI6WyJhcGlfcmVhZCJdLCJ2ZXJzaW9uIjoxfQ.wL4Us7pUJ_uk_zhO75ikuaaY5Ex32vPBrQVNAo2URbM",
+      };
+
+      const options = {
+        method: "GET",
+        headers: {
+          accept: "application/json",
+          Authorization: `Bearer ${config.bearer_token}`,
+        },
+      };
+      fetch(`https://api.themoviedb.org/3/movie/${dataId}`, options)
+        .then((response) => response.json())
+        .then((data) => {
+          // Display the movie details on the page
+          const movieDetails = document.getElementById("movie-details");
+          movieDetails.innerHTML = `
+                    <h1>${data.title}</h1>
+                    <img src="${data.poster_path}" alt="${data.title}" />
+                    <p>${data.overview}</p>
+                    <!-- Add more movie details as needed -->
+                `;
+        })
+        .catch((error) => {
+          console.error("Error fetching movie details: " + error);
+        });
+    </script>
+    <script type="module" src="./main.js"></script>
+  </body>
+</html>
