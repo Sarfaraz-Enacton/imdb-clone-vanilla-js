@@ -8,58 +8,7 @@ body {
 button {
   @apply transition ease-in-out duration-200;
 }
-/* hero single card */
-/* start */
-.swiper-slide,
-.hero-card .hero-bg-wrapper {
-  @apply relative w-full h-full;
-  background: linear-gradient(
-    180deg,
-    transparent 0,
-    transparent 65%,
-    rgba(0, 0, 0, 0.35) 83.5%,
-    rgba(0, 0, 0, 0.75)
-  );
-}
-.swiper-slide,
-.hero-card .shadow-class {
-  z-index: 10;
-  background: linear-gradient(
-    180deg,
-    transparent 0,
-    transparent 65%,
-    rgba(0, 0, 0, 0.35) 83.5%,
-    rgba(0, 0, 0, 0.75)
-  );
-}
-.swiper-slide,
-.hero-card .hero-bg {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-}
-.swiper-slide,
-.hero-card .hero-card-content {
-  position: absolute;
-  left: 0;
-  right: 0;
-  bottom: 0;
-  display: flex;
-  width: 100%;
-}
-.swiper-slide,
-.hero-card .hero-card-img-wrapper {
-  width: 150px;
-}
-.swiper-slide,
-.hero-card .hero-card-img-wrapper img {
-  width: 100%;
-}
 
-/* end */
-
-/* upcoming cards */
-/* start */
 #upcoming-movies {
   background: linear-gradient(
     0deg,
@@ -70,7 +19,6 @@ button {
   );
 }
 
-/* end */
 .swiper-button-next,
 .swiper-button-prev {
   padding: 32px 25px !important;

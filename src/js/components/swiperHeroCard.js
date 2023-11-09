@@ -6,24 +6,29 @@ import { imgBaseUrl } from "../utils/api";
 
 function CardComponent(data) {
   const trendingMovies = document.querySelector("#trending-movies");
+  // console.log(data);
   const card = data
     .slice(0, 9)
     .map((movie) => {
       return `
-                <div class="swiper-slide hero-card cursor-pointer" onclick="previewClick(${
+                <div class="swiper-slide hero-card cursor-pointer" data-id=${
                   movie.id
-                })">
+                } data-media-type=${
+        movie.media_type
+      } onclick="previewClick(this)">
                 <div class="shadow-class"></div>
-                <div class="hero-bg-wrapper">
-                  <img class="hero-bg" src=${
+                <div class="hero-bg-wrapper relative min-h-[400px] w-full h-full object-cover">
+                  <img class="w-full h-full object-cover" src=${
                     imgBaseUrl + movie.backdrop_path
                   } alt=${movie.title} />
+                  <div class="swiper-lazy-preloader"></div>
                 </div>
-                <div class="hero-card-content">
-                  <div class="hero-card-img-wrapper">
-                    <img class="hero-card-img" src=${
+                <div class="absolute -bottom-8 left-4 flex">
+                  <div class="max-w-[165px] relative">
+                    <img class="w-full h-full object-cover" src=${
                       imgBaseUrl + movie.poster_path
                     } alt=${movie.title} />
+                    <div class="swiper-lazy-preloader"></div>
                   </div>
                   <div>
                     <h3 class="card-title">${movie?.title || movie?.name}</h3>
@@ -55,7 +60,7 @@ function CardComponent(data) {
     spaceBetween: 20,
     loop: true,
     autoplay: {
-      delay: 3000,
+      delay: 5000,
       disableOnInteraction: true,
     },
     navigation: {

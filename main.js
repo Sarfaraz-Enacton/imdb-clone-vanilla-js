@@ -1,5 +1,4 @@
 import "./style.css";
-import "./src/js/swiper";
 import "./src/js/utils/api";
 
 // import javascriptLogo from './javascript.svg'
@@ -38,6 +37,29 @@ if (menuPc && navMenuPcBtn && navMenuCloseBtn) {
     navMenuCloseBtn.addEventListener("click", () => {
       menuPc.classList.remove("translate-y-0");
       menuPc.classList.add("-translate-y-full");
+    });
+  });
+}
+
+// dropdown menu
+const dropdownBtn = document.querySelector("#dropdown-btn");
+const dropdownBtnText = document.querySelector("#dropdown-btn span");
+const dropdownMenu = document.querySelector("#dropdown-menu");
+const dropdownOptions = document.querySelectorAll("#dropdown-menu div a");
+if (dropdownBtn && dropdownMenu) {
+  document.addEventListener("DOMContentLoaded", () => {
+    dropdownBtn.addEventListener("click", () => {
+      dropdownMenu.classList.toggle("opacity-0");
+      dropdownMenu.classList.toggle("opacity-1");
+    });
+  });
+ 
+  dropdownOptions.forEach((option) => {
+    option.addEventListener("click", (e) => {
+      const selectText = e.target.textContent;
+      dropdownBtnText.textContent = selectText;
+      dropdownMenu.classList.remove("opacity-1");
+      dropdownMenu.classList.add("opacity-0");
     });
   });
 }

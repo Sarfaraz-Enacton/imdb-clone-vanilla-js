@@ -4,7 +4,7 @@ import mainCard from "./mainCard";
 
 export default function movieCard(data) {
   const topMovies = document.querySelector("#top-movies");
-  const card = mainCard(data);
+  const card = mainCard(data, "movie");
 
   if (topMovies) {
     topMovies.innerHTML = `

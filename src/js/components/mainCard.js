@@ -1,16 +1,19 @@
 import { imgBaseUrl } from "../utils/api";
 
-export default function mainCard(data) {
+export default function mainCard(data, type) {
   const value = data
     .slice(0, 29)
     .map((movie) => {
       return `
-            <div class="swiper-slide" onclick="previewClick(${movie.id})">
+            <div class="swiper-slide" data-id=${
+              movie.id
+            } data-media-type=${type} onclick="previewClick(this)">
               <div class="rounded overflow-hidden">
-                <div class="w-full">
+                <div class="w-full min-h-[250px] relative">
                   <img class="w-full h-full object-cover" src=${
                     imgBaseUrl + movie.poster_path
-                  } alt=${movie.title && movie.name} />
+                  } alt=${movie.title || movie.name} loading="lazy" />
+                  <div class="swiper-lazy-preloader"></div>
                 </div>
                 <div class="flex flex-col gap-y-2 h-full px-2 py-3 bg-secondary-200">
                   <div class="flex">

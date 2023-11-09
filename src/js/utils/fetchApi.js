@@ -18,8 +18,11 @@ export default async function fetchApi(url, dataFunc) {
     }
     const data = await res.json();
     const { results } = data;
-    // console.log(results);
-    return dataFunc(results);
+    if (!data.results) {
+      return dataFunc(data);
+    } else {
+      return dataFunc(results);
+    }
   } catch (err) {
     console.error("Error", err);
   }

@@ -4,7 +4,7 @@ import mainCard from "./mainCard";
 
 export default function tvShowCard(data) {
   const topTv = document.querySelector("#top-tv-show");
-  const card = mainCard(data);
+  const card = mainCard(data,'tv');
 
   if (topTv) {
     topTv.innerHTML = `
