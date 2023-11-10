@@ -4,7 +4,7 @@ export default function upcomingCards(data) {
   const upcomingMovies = document.querySelector("#upcoming-movies");
   const moviesHtml = data.slice(0, 3).map((movie) => {
     const type = movie.media_type;
-    // console.log(movie);
+    console.log(movie);
     // console.log(type);
     return `
             <div class="upcoming-card flex gap-3 cursor-pointer" data-id=${

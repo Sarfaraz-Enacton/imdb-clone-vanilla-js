@@ -1,27 +1,7 @@
 import "./style.css";
 import "./src/js/utils/api";
-
-// import javascriptLogo from './javascript.svg'
-// import viteLogo from '/vite.svg'
-// import { setupCounter } from './counter.js'
-
-// document.querySelector('#app').innerHTML = `
-//   <div>
-//     <a href="https://vitejs.dev" target="_blank">
-//       <img src="${viteLogo}" class="logo" alt="Vite logo" />
-//     </a>
-//     <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript" target="_blank">
-//       <img src="${javascriptLogo}" class="logo vanilla" alt="JavaScript logo" />
-//     </a>
-//     <h1>Hello Vite!</h1>
-//     <div class="card">
-//       <button id="counter" type="button"></button>
-//     </div>
-//     <p class="read-the-docs">
-//       Click on the Vite logo to learn more
-//     </p>
-//   </div>
-// `
+import fetchApi from "./src/js/utils/fetchApi";
+import searchCards from "./src/js/components/searchCards";
 
 // setupCounter(document.querySelector('#counter'))
 const navMenuPcBtn = document.querySelector("#menu-btn-pc");
@@ -45,7 +25,7 @@ if (menuPc && navMenuPcBtn && navMenuCloseBtn) {
 const dropdownBtn = document.querySelector("#dropdown-btn");
 const dropdownBtnText = document.querySelector("#dropdown-btn span");
 const dropdownMenu = document.querySelector("#dropdown-menu");
-const dropdownOptions = document.querySelectorAll("#dropdown-menu div a");
+const dropdownOptions = document.querySelectorAll("#dropdown-menu div div");
 if (dropdownBtn && dropdownMenu) {
   document.addEventListener("DOMContentLoaded", () => {
     dropdownBtn.addEventListener("click", () => {
@@ -53,7 +33,6 @@ if (dropdownBtn && dropdownMenu) {
       dropdownMenu.classList.toggle("opacity-1");
     });
   });
- 
   dropdownOptions.forEach((option) => {
     option.addEventListener("click", (e) => {
       const selectText = e.target.textContent;
@@ -63,3 +42,54 @@ if (dropdownBtn && dropdownMenu) {
     });
   });
 }
+
+// Search
+const searchBtn = document.querySelector("#search-btn");
+const searchInput = document.querySelector("#search-input");
+if (searchBtn && searchInput) {
+  document.addEventListener("DOMContentLoaded", () => {
+    searchInput.addEventListener("input", (e) => {
+      const search_value = e.target.value;
+      console.log(search_value);
+      if (search_value === "") {
+        return;
+      } else {
+        searchMovie();
+      }
+    });
+  });
+}
+console.log(dropdownBtnText.textContent.toLowerCase());
+const searchMovie = () => {
+  const search_value = searchInput.value.toLowerCase().trim();
+  const searchCardParent = document.querySelector("#search-cards");
+
+  if (search_value.length < 2 || search_value === null) {
+    searchCardParent.classList.add("hidden");
+  } else {
+    searchCardParent.classList.remove("hidden");
+    if (dropdownBtnText.textContent.toLowerCase() === "all") {
+      console.log("all");
+      fetchApi(
+        `https://api.themoviedb.org/3/search/multi?query=${search_value}&page=1`,
+        searchCards
+      );
+      // window.location.href = `search.html?search=${search_value}&mediaType=tv`;
+    } else if (dropdownBtnText.textContent.toLowerCase() === "shows") {
+      console.log("shows");
+      fetchApi(
+        `https://api.themoviedb.org/3/search/tv?language=en-US&query=${search_value}&include_adult=false&page=1`,
+        searchCards
+      );
+    } else if (dropdownBtnText.textContent.toLowerCase() === "movies") {
+      console.log("movies");
+      fetchApi(
+        `https://api.themoviedb.org/3/search/movie?language=en-US&query=${search_value}&include_adult=false&page=1`,
+        searchCards
+      );
+    }
+    // const dropdownText = dropdownBtnText.textContent.toLowerCase();
+    // const apiUrl = `https://api.themoviedb.org/3/search/${dropdownText}?query=${searchValue}&page=1`;
+    // fetchApi(apiUrl, searchCards);
+  }
+};
