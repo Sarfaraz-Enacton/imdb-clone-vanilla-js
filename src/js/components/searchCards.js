@@ -1,4 +1,5 @@
 import { imgBaseUrl } from "../utils/api";
+import noImagePlaceholder from "/noImagePlaceholder.svg";
 
 export default function searchCards(data) {
   const searchCardParent = document.querySelector("#search-cards");
@@ -10,7 +11,9 @@ export default function searchCards(data) {
     } data-media-type=${movie.media_type} onclick="previewClick(this)">
         <div class="max-w-[48px] relative">
             <img class="w-full h-full object-cover" src="${
-              imgBaseUrl + movie.poster_path || imgBaseUrl + movie.profile_path
+              movie.poster_path
+                ? imgBaseUrl + movie.poster_path
+                : noImagePlaceholder
             }" alt="${movie.title || movie.name}"/>
         </div>
         <div class="space-y-1">

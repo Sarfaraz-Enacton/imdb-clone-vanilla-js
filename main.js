@@ -2,6 +2,9 @@ import "./style.css";
 import "./src/js/utils/api";
 import fetchApi from "./src/js/utils/fetchApi";
 import searchCards from "./src/js/components/searchCards";
+import footer from "./src/js/components/footer";
+import header from "./src/js/components/header";
+header();
 
 // setupCounter(document.querySelector('#counter'))
 const navMenuPcBtn = document.querySelector("#menu-btn-pc");
@@ -59,7 +62,7 @@ if (searchBtn && searchInput) {
     });
   });
 }
-console.log(dropdownBtnText.textContent.toLowerCase());
+// console.log(dropdownBtnText.textContent.toLowerCase());
 const searchMovie = () => {
   const search_value = searchInput.value.toLowerCase().trim();
   const searchCardParent = document.querySelector("#search-cards");
@@ -71,14 +74,14 @@ const searchMovie = () => {
     if (dropdownBtnText.textContent.toLowerCase() === "all") {
       console.log("all");
       fetchApi(
-        `https://api.themoviedb.org/3/search/multi?query=${search_value}&page=1`,
+        `https://api.themoviedb.org/3/search/multi?query=${search_value}&language=en-US&page=1&include_adult=false`,
         searchCards
       );
       // window.location.href = `search.html?search=${search_value}&mediaType=tv`;
     } else if (dropdownBtnText.textContent.toLowerCase() === "shows") {
       console.log("shows");
       fetchApi(
-        `https://api.themoviedb.org/3/search/tv?language=en-US&query=${search_value}&include_adult=false&page=1`,
+        `https://api.themoviedb.org/3/search/tv?query=${search_value}&language=en-US&include_adult=false&page=1`,
         searchCards
       );
     } else if (dropdownBtnText.textContent.toLowerCase() === "movies") {
@@ -93,3 +96,5 @@ const searchMovie = () => {
     // fetchApi(apiUrl, searchCards);
   }
 };
+
+footer();

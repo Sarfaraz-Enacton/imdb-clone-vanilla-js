@@ -11,25 +11,18 @@
     />
   </head>
   <body>
-    <header id="header"></header>
+    <header class="header"></header>
     <div class="container">
-      <div id="single-details">
-        <!-- Movie details will be displayed here -->
-      </div>
+      <div id="single-details"></div>
     </div>
+    <footer class="footer"></footer>
     <script>
-      // fetch(`https://api.themoviedb.org/3/movie/${dataId}`, options)
-      //   .then((response) => response.json())
-      //   .then((data) => {
-      //     // Display the movie details on the page
-      //     const movieDetails = document.getElementById("single-details");
-      //     movieDetails.innerHTML = `
-
-      //           `;
-      //   })
-      //   .catch((error) => {
-      //     console.error("Error fetching movie details: " + error);
-      //   });
+      function previewClick(element) {
+        const id = element.getAttribute("data-id");
+        const type = element.getAttribute("data-media-type");
+        window.location.href = `preview.html?dataId=${id}&mediaType=${type}`;
+        // console.log(id, type);
+      }
     </script>
     <script type="module" src="./src/js/components/singleCard.js"></script>
     <script type="module" src="./main.js"></script>

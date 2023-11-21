@@ -1,5 +1,6 @@
 import { imgBaseUrl } from "../utils/api";
 import fetchApi from "../utils/fetchApi";
+import noImagePlaceholder from "/noImagePlaceholder.svg";
 
 function getQueryParams(url) {
   const urlParams = new URLSearchParams(window.location.search);
@@ -11,7 +12,9 @@ export default function singleCard(data) {
   const card = ` <h1>${data.title || data.name}</h1>
                 <div class="max-w-[300px]">
                     <img class="w-full h-full object-cover" src="${
-                      imgBaseUrl + data.poster_path
+                      data.poster_path
+                        ? imgBaseUrl + data.poster_path
+                        : noImagePlaceholder
                     }" alt="${data.title || data.name}" />
                 </div>
                 <p>${data.overview}</p>`;
