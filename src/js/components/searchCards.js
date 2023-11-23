@@ -3,12 +3,17 @@ import noImagePlaceholder from "/noImagePlaceholder.svg";
 
 export default function searchCards(data) {
   const searchCardParent = document.querySelector("#search-cards");
+  const dropdownBtnText = document.querySelector("#dropdown-btn span");
+  const type = dropdownBtnText.getAttribute("data-value");
+  const noResultMessage = `<p class="text-white/70 text-sm sm:text-base text-center font-normal px-2">no result found</p>`;
   const card = data.slice(0, 7).map((movie) => {
     console.log(movie);
     return `
     <div class="p-2 flex gap-4 hover:bg-secondary-100 transition ease-in-out duration-200 hover:cursor-pointer" data-id=${
       movie.id
-    } data-media-type=${movie.media_type} onclick="previewClick(this)">
+    } data-media-type=${
+      type === "multi" ? movie.media_type : type
+    } onclick="previewClick(this)">
         <div class="max-w-[48px] relative">
             <img class="w-full h-full object-cover" src="${
               movie.poster_path
@@ -34,5 +39,6 @@ export default function searchCards(data) {
         </div>
     </div>`;
   });
-  searchCardParent.innerHTML = card.join("");
+  // searchCardParent.innerHTML = card.join("");
+  searchCardParent.innerHTML = `${data < 1 ? noResultMessage : card.join("")}`;
 }

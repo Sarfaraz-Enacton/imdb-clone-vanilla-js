@@ -17,9 +17,8 @@ export default function movieCard(data) {
                     </div>
                     `;
   }
-
   var swiper = new Swiper(".top-cards", {
-    slidesPerView: 6,
+    // slidesPerView: 6,
     spaceBetween: 24,
     slidesPerGroup: 6,
     // loop: true,
@@ -31,22 +30,18 @@ export default function movieCard(data) {
       0: {
         slidesPerView: 1.5,
         slidesPerGroup: 1,
-        navigation: false,
       },
       540: {
         slidesPerView: 2.5,
         slidesPerGroup: 2,
-        navigation: false,
       },
       768: {
         slidesPerView: 3.5,
         slidesPerGroup: 3,
-        navigation: false,
       },
       1024: {
         slidesPerView: 5,
         slidesPerGroup: 5,
-        navigation: true,
       },
       1280: {
         slidesPerView: 6,

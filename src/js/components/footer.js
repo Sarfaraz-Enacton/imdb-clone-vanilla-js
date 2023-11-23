@@ -3,7 +3,7 @@ import { footerConstant } from "../utils/constants";
 export default function footer() {
   const footerId = document.querySelector(".footer");
   const footerLinks = footerConstant.map((item) => {
-    return `<a class="flex items-center gap-1 hover:underline px-2" href="${item.link}" target="_blank">${item.text}<svg width="24" height="24" xmlns="http://www.w3.org/2000/svg" class="h-3 w-3" viewBox="0 0 24 24" fill="currentColor" role="presentation"><path d="M21.6 21.6H2.4V2.4h7.2V0H0v24h24v-9.6h-2.4v7.2zM14.4 0v2.4h4.8L7.195 14.49l2.4 2.4L21.6 4.8v4.8H24V0h-9.6z"></path></svg></a>`;
+    return `<a class="flex items-center gap-1 text-sm sm:text-base hover:underline px-2" href="${item.link}" target="_blank">${item.text}<svg width="24" height="24" xmlns="http://www.w3.org/2000/svg" class="h-3 w-3" viewBox="0 0 24 24" fill="currentColor" role="presentation"><path d="M21.6 21.6H2.4V2.4h7.2V0H0v24h24v-9.6h-2.4v7.2zM14.4 0v2.4h4.8L7.195 14.49l2.4 2.4L21.6 4.8v4.8H24V0h-9.6z"></path></svg></a>`;
   });
   const footerContent = `<div class="container py-4">
   <div class="flex items-center justify-center flex-wrap gap-4 py-4">
