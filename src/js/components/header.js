@@ -236,8 +236,65 @@ export default function header() {
   </div>
 </div>  
   `;
+
+  const headerDropdownHtml = `<div class="dropdown relative inline-block text-left">
+  <button
+    id="dropdown-btn"
+    class="bg-primary text-secondary px-3 rounded-l border-r border-secondary inline-flex items-center justify-center h-full"
+  >
+    <span data-value="multi">All</span>
+    <svg
+      class="-mr-1 h-4 w-4"
+      viewBox="0 0 20 20"
+      fill="currentColor"
+      aria-hidden="true"
+    >
+      <path
+        fill-rule="evenodd"
+        d="M5.23 7.21a.75.75 0 011.06.02L10 11.168l3.71-3.938a.75.75 0 111.08 1.04l-4.25 4.5a.75.75 0 01-1.08 0l-4.25-4.5a.75.75 0 01.02-1.06z"
+        clip-rule="evenodd"
+      />
+    </svg>
+  </button>
+  <div
+    class="absolute right-0 z-10 mt-2 origin-top-right rounded-md bg-secondary-300 shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none opacity-0 transition-opacity"
+    id="dropdown-menu"
+    role="menu"
+    aria-orientation="vertical"
+    aria-labelledby="menu-button"
+    tabindex="-1"
+  >
+    <div class="py-1 text-primary" role="none">
+      <div
+        class="block px-4 py-2 text-sm cursor-pointer"
+        role="menuitem"
+        tabindex="-1"
+        data-value="multi"
+      >
+        All
+      </div>
+      <div
+        class="block px-4 py-2 text-sm cursor-pointer"
+        role="menuitem"
+        tabindex="-1"
+        data-value="tv"
+      >
+        Shows
+      </div>
+      <div
+        class="block px-4 py-2 text-sm cursor-pointer"
+        role="menuitem"
+        tabindex="-1"
+        data-value="movie"
+      >
+        Movies
+      </div>
+    </div>
+  </div>
+</div>`;
+
   header.innerHTML = `
-  <div class="py-3 bg-secondary">
+  <div class="py-3 bg-secondary-250">
   <nav class="container">
     <div class="flex gap-2 text-sm font-medium">
       <a href="/index.html" class="block w-16 h-8 flex-shrink-0">
@@ -264,58 +321,7 @@ export default function header() {
         <span>Menu</span>
       </button>
       <div class="flex w-full relative">
-        <div class="relative inline-block text-left">
-          <button
-            id="dropdown-btn"
-            class="bg-primary text-secondary px-3 rounded-l border-r border-secondary inline-flex items-center justify-center h-full"
-          >
-            <span>All</span>
-            <svg
-              class="-mr-1 h-4 w-4"
-              viewBox="0 0 20 20"
-              fill="currentColor"
-              aria-hidden="true"
-            >
-              <path
-                fill-rule="evenodd"
-                d="M5.23 7.21a.75.75 0 011.06.02L10 11.168l3.71-3.938a.75.75 0 111.08 1.04l-4.25 4.5a.75.75 0 01-1.08 0l-4.25-4.5a.75.75 0 01.02-1.06z"
-                clip-rule="evenodd"
-              />
-            </svg>
-          </button>
-          <div
-            class="absolute right-0 z-10 mt-2 origin-top-right rounded-md bg-secondary-300 shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none opacity-0 transition-opacity"
-            id="dropdown-menu"
-            role="menu"
-            aria-orientation="vertical"
-            aria-labelledby="menu-button"
-            tabindex="-1"
-          >
-            <div class="py-1 text-primary" role="none">
-              <div
-                class="block px-4 py-2 text-sm cursor-pointer"
-                role="menuitem"
-                tabindex="-1"
-              >
-                All
-              </div>
-              <div
-                class="block px-4 py-2 text-sm cursor-pointer"
-                role="menuitem"
-                tabindex="-1"
-              >
-                Shows
-              </div>
-              <div
-                class="block px-4 py-2 text-sm cursor-pointer"
-                role="menuitem"
-                tabindex="-1"
-              >
-                Movies
-              </div>
-            </div>
-          </div>
-        </div>
+        ${headerDropdownHtml}
 
         <div class="w-full">
           <input
@@ -349,7 +355,19 @@ export default function header() {
         <div
           id="search-cards"
           class="absolute right-0 left-0 top-8 mt-2 origin-top-right z-10 bg-secondary-300 py-2 rounded w-full divide-y-[1px] shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none opacity-1 transition-opacity hidden"
-        ></div>
+        >
+          <div class="w-full h-[300px] flex items-center justify-center gap-2">
+            <div
+              class="w-4 h-4 rounded-full animate-pulse bg-yellow"
+            ></div>
+            <div
+              class="w-4 h-4 rounded-full animate-pulse bg-yellow"
+            ></div>
+            <div
+              class="w-4 h-4 rounded-full animate-pulse bg-yellow"
+            ></div>
+          </div>
+        </div>
       </div>
       <button
         class="hidden items-center px-3 rounded cursor-pointer hover:bg-primary/20 lg:flex"
@@ -421,4 +439,55 @@ export default function header() {
   ${navMenuPc}
 </div>
 `;
+  // nav menu pc
+  const navMenuPcBtn = document.querySelector("#menu-btn-pc");
+  const menuPc = document.querySelector("#MenuPc");
+  const navMenuCloseBtn = document.querySelector("#menu-close-btn-pc");
+  if (menuPc && navMenuPcBtn && navMenuCloseBtn) {
+    document.addEventListener("DOMContentLoaded", () => {
+      navMenuPcBtn.addEventListener("click", () => {
+        menuPc.classList.remove("hidden");
+        menuPc.classList.remove("-translate-y-full");
+        menuPc.classList.add("translate-y-0");
+      });
+      navMenuCloseBtn.addEventListener("click", () => {
+        menuPc.classList.remove("translate-y-0");
+        menuPc.classList.add("-translate-y-full");
+      });
+    });
+  }
+
+  // dropdown menu
+  const dropdownBtn = document.querySelector("#dropdown-btn");
+  const dropdownBtnText = document.querySelector("#dropdown-btn span");
+  const dropdownMenu = document.querySelector("#dropdown-menu");
+  const dropdownOptions = document.querySelectorAll("#dropdown-menu div div");
+  if (dropdownBtn && dropdownMenu) {
+    document.addEventListener("DOMContentLoaded", () => {
+      dropdownBtn.addEventListener("click", () => {
+        // dropdownMenu.classList.toggle("hidden");
+        dropdownMenu.classList.toggle("opacity-0");
+        dropdownMenu.classList.toggle("opacity-1");
+      });
+    });
+    dropdownOptions.forEach((option) => {
+      option.addEventListener("click", (e) => {
+        const selectText = e.target.textContent;
+        const selectAttribute = option.getAttribute("data-value");
+        dropdownBtnText.textContent = selectText;
+        dropdownBtnText.setAttribute("data-value", selectAttribute);
+        dropdownMenu.classList.remove("opacity-1");
+        dropdownMenu.classList.add("opacity-0");
+      });
+    });
+    document.addEventListener("click", (e) => {
+      let isClickInside = document
+        .querySelector(".dropdown")
+        .contains(e.target);
+      if (!isClickInside) {
+        dropdownMenu.classList.remove("opacity-1");
+        dropdownMenu.classList.add("opacity-0");
+      }
+    });
+  }
 }
