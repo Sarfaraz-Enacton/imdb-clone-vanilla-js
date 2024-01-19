@@ -24,7 +24,32 @@ if (searchBtn && searchInput) {
   });
 }
 // console.log(dropdownBtnText.textContent.toLowerCase());
-const searchMovie = () => {
+// const searchMovie = () => {
+//   const search_value = searchInput.value.toLowerCase().trim();
+//   const searchCardParent = document.querySelector("#search-cards");
+//   const dropdownBtnText = document.querySelector("#dropdown-btn span");
+
+//   if (search_value.length < 2 || search_value === null) {
+//     searchCardParent.classList.add("hidden");
+//   } else {
+//     searchCardParent.classList.remove("hidden");
+//     const apiUrl = `https://api.themoviedb.org/3/search/${dropdownBtnText.getAttribute(
+//       "data-value"
+//     )}?query=${search_value}&page=1`;
+//     fetchApi(apiUrl, searchCards);
+//   }
+// };
+//
+const debounce = (func, delay) => {
+  let timeoutId;
+  return (...args) => {
+    clearTimeout(timeoutId);
+    timeoutId = setTimeout(() => {
+      func.apply(null, args);
+    }, delay);
+  };
+};
+const searchMovie = debounce(() => {
   const search_value = searchInput.value.toLowerCase().trim();
   const searchCardParent = document.querySelector("#search-cards");
   const dropdownBtnText = document.querySelector("#dropdown-btn span");
@@ -38,6 +63,5 @@ const searchMovie = () => {
     )}?query=${search_value}&page=1`;
     fetchApi(apiUrl, searchCards);
   }
-};
-
+}, 500);
 footer();

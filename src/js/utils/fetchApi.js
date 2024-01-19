@@ -10,7 +10,7 @@ export default async function fetchApi(url, dataFunc) {
         Authorization: `Bearer ${config.bearer_token}`,
       },
     };
-
+    console.log(url);
     const res = await fetch(url, options);
     if (res.status !== 200) {
       console.error("Error", res.status);
